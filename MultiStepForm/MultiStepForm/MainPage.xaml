@@ -1,11 +1,72 @@
-# Multi-Step-Wizard-with-the-MAUI-Tab-View
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:local="clr-namespace:MultiStepForm"
+             x:Class="MultiStepForm.MainPage">
 
-This sample demonstrates how to create a multi-step wizard using the .NET MAUI Tab View control in a .NET MAUI application.
+    <ContentPage.Resources>
+        <!-- Theme -->
+        <Color x:Key="PrimaryColor">#4F46E5</Color>
+        <Color x:Key="AccentColor">#22C55E</Color>
+        <Color x:Key="Surface">#FFFFFF</Color>
+        <Color x:Key="SurfaceAlt">#F9FAFB</Color>
+        <Color x:Key="TextMuted">#6B7280</Color>
+        <Color x:Key="BorderColor">#E5E7EB</Color>
+        <Color x:Key="ErrorColor">#DC2626</Color>
 
-## Sample
+        <!-- Styles -->
+        <Style TargetType="Entry">
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+        <Style TargetType="Picker">
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="0,12,0,0"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="#111827"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0,16,0,0"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="HeightRequest" Value="44"/>
+        </Style>
+        <Style x:Key="ErrorLabelStyle" TargetType="Label">
+            <Setter Property="Margin" Value="0,2,0,0"/>
+            <Setter Property="FontAttributes" Value="None"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="TextColor" Value="{StaticResource ErrorColor}"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+    </ContentPage.Resources>
 
-```xaml
-     <tabView:SfTabView
+    <Grid Padding="16" BackgroundColor="#F3F4F6">
+        <Border
+        Stroke="{StaticResource BorderColor}"
+        Background="{StaticResource Surface}"
+        StrokeThickness="1"
+        Padding="16">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="16"/>
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                <!-- Header -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Event Registration Wizard"
+                       FontSize="22"
+                       TextColor="{StaticResource PrimaryColor}"
+                       FontAttributes="Bold"/>
+                </VerticalStackLayout>
+
+                <!-- Tabs -->
+                <tabView:SfTabView
                 x:Name="TabView"
                 Grid.Row="1"
                 EnableSwiping="False"
@@ -270,22 +331,8 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
                     </tabView:SfTabItem>
 
                 </tabView:SfTabView>
-```
+            </Grid>
+        </Border>
+    </Grid>
 
-### Output
-
-![Tab View](MauiApp12025-11-2616-45-51-ezgif.com-video-to-gif-converter.gif)
-
-## Requirements to run the demo
-
-To run the demo, refer to [System Requirements for .NET MAUI](https://help.syncfusion.com/maui/system-requirements)
-
-## Troubleshooting:
-
-### Path too long exception
-
-If you are facing path too long exception when building this example project, close Visual Studio and rename the repository to short and build the project.
-
-## License
-
-Syncfusion has no liability for any damage or consequence that may arise from using or viewing the samples. The samples are for demonstrative purposes. If you choose to use or access the samples, you agree to not hold Syncfusion liable, in any form, for any damage related to use, for accessing, or viewing the samples. By accessing, viewing, or seeing the samples, you acknowledge and agree Syncfusion's samples will not allow you seek injunctive relief in any form for any claim related to the sample. If you do not agree to this, do not view, access, utilize, or otherwise do anything with Syncfusion's samples.
+</ContentPage>
