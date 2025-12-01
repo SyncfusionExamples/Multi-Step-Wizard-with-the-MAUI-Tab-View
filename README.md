@@ -5,276 +5,64 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
 ## Sample
 
 ```xaml
-     <tabView:SfTabView
-                x:Name="TabView"
-                Grid.Row="1"
-                EnableSwiping="False"
-                BackgroundColor="Transparent">
+     <Grid RowDefinitions="Auto,*" RowSpacing="12">
+    <!-- Header -->
+    <VerticalStackLayout Spacing="4">
+        <Label Text="Event Registration Wizard"
+               FontSize="22"
+               TextColor="{StaticResource PrimaryColor}"
+               FontAttributes="Bold"/>
+    </VerticalStackLayout>
 
-                    <!-- TAB 1: Personal Info -->
-                    <tabView:SfTabItem x:Name="TabPersonal" Header="1. Personal Info" IsVisible="True">
-                        <tabView:SfTabItem.Content>
-                            <ScrollView>
-                                <VerticalStackLayout>
-                                    <Label Text="Full Name"/>
-                                    <Entry x:Name="FullNameEntry" Placeholder="Enter your full name"/>
-                                    <Label x:Name="FullNameError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+    <!-- Tabs -->
+    <tabView:SfTabView x:Name="TabView" Grid.Row="1" EnableSwiping="False" BackgroundColor="Transparent"
+                       TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
+        <tabView:SfTabView.TabBarBackground>
+            <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Color="LightBlue" Offset="0.1" />
+                <GradientStop Color="CornflowerBlue" Offset="1.0" />
+        </LinearGradientBrush>
+    </tabView:SfTabView.TabBarBackground>
 
-                                    <Label Text="Email Address"/>
-                                    <Entry x:Name="EmailEntry" Placeholder="name@example.com" Keyboard="Email"/>
-                                    <Label x:Name="EmailError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+        <!-- TAB 1: Personal Info -->
+        <tabView:SfTabItem x:Name="TabPersonal" Header="1. Personal Info" IsVisible="True"
+                           FontAttributes="Bold" FontSize="18">
+            <tabView:SfTabItem.Content>
+                <local:PersonalInfoView x:Name="PersonalView" />
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
 
-                                    <Label Text="Mobile Number"/>
-                                    <Entry x:Name="MobileEntry" Placeholder="+1 555 000 0000" Keyboard="Telephone"/>
-                                    <Label x:Name="MobileError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+        <!-- TAB 2: Event Selection -->
+        <tabView:SfTabItem x:Name="TabEvent" Header="2. Event Selection" IsVisible="False"
+                           FontAttributes="Bold" FontSize="18">
+            <tabView:SfTabItem.Content>
+                <local:EventSelectionView x:Name="EventView" />
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
 
-                                    <Label Text="Organization / Company Name"/>
-                                    <Entry x:Name="OrgEntry" Placeholder="Your company"/>
-                                    <Label x:Name="OrgError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+        <!-- TAB 3: Accommodation Preferences -->
+        <tabView:SfTabItem x:Name="TabAccommodation" Header="3. Accommodation" IsVisible="False"
+                           FontAttributes="Bold" FontSize="18">
+            <tabView:SfTabItem.Content>
+                <local:AccommodationView x:Name="Accommodation" />
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
 
-                                    <Label Text="Job Title"/>
-                                    <Entry x:Name="JobTitleEntry" Placeholder="Your role/title"/>
-                                    <Label x:Name="JobTitleError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+        <!-- TAB 4: Payment Details -->
+        <tabView:SfTabItem x:Name="TabPayment" Header="4. Payment" IsVisible="False"
+                           FontAttributes="Bold" FontSize="18">
+            <tabView:SfTabItem.Content>
+                <local:PaymentView x:Name="Payment" />
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
 
-                                    <HorizontalStackLayout Spacing="12">
-                                        <Button Text="Next"
-                                            BackgroundColor="{StaticResource PrimaryColor}"
-                                            TextColor="White"
-                                            Clicked="OnPersonalNextClicked"/>
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
-                            </ScrollView>
-                        </tabView:SfTabItem.Content>
-                    </tabView:SfTabItem>
-
-                    <!-- TAB 2: Event Selection -->
-                    <tabView:SfTabItem x:Name="TabEvent" Header="2. Event Selection" IsVisible="False">
-                        <tabView:SfTabItem.Content>
-                            <ScrollView>
-                                <VerticalStackLayout>
-                                    <Label Text="Event / Conference Name"/>
-                                    <Entry x:Name="EventNameEntry" Placeholder="e.g., Global Tech Summit"/>
-                                    <Label x:Name="EventNameError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                    <Label Text="Session Selection"/>
-                                    <VerticalStackLayout Spacing="8">
-                                        <HorizontalStackLayout Spacing="8">
-                                            <CheckBox x:Name="CbKeynotes"/>
-                                            <Label Text="Keynotes" VerticalOptions="Center" />
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="8">
-                                            <CheckBox x:Name="CbWorkshops"/>
-                                            <Label Text="Workshops" VerticalOptions="Center" />
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="8">
-                                            <CheckBox x:Name="CbBreakouts"/>
-                                            <Label Text="Breakout Sessions" VerticalOptions="Center" />
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
-                                    <Label x:Name="SessionError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                    <Label Text="Track Preferences"/>
-                                    <Picker x:Name="TrackPicker" Title="Select a track">
-                                        <Picker.Items>
-                                            <x:String>Tech</x:String>
-                                            <x:String>Business</x:String>
-                                            <x:String>Design</x:String>
-                                            <x:String>Product</x:String>
-                                        </Picker.Items>
-                                    </Picker>
-                                    <Label x:Name="TrackError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                    <Label Text="Add-ons"/>
-                                    <VerticalStackLayout Spacing="8">
-                                        <HorizontalStackLayout Spacing="8">
-                                            <CheckBox x:Name="CbDinner"/>
-                                            <Label Text="Networking Dinner" VerticalOptions="Center"/>
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="8">
-                                            <CheckBox x:Name="CbVip"/>
-                                            <Label Text="VIP Access" VerticalOptions="Center"/>
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
-
-                                    <Label Text="Number of Attendees"/>
-                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
-                                        <Stepper x:Name="AttendeeStepper" Minimum="1" Maximum="20" Increment="1" Value="1" />
-                                        <Label Grid.Column="1" VerticalOptions="Center"
-                                           Text="{Binding Source={x:Reference AttendeeStepper}, Path=Value}" />
-                                    </Grid>
-
-                                    <HorizontalStackLayout Spacing="12" Margin="0,8,0,0">
-                                        <Button Text="Back" Clicked="OnBackToPersonalClicked" />
-                                        <Button Text="Next"
-                                            BackgroundColor="{StaticResource PrimaryColor}"
-                                            TextColor="White"
-                                            Clicked="OnEventNextClicked"/>
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
-                            </ScrollView>
-                        </tabView:SfTabItem.Content>
-                    </tabView:SfTabItem>
-
-                    <!-- TAB 3: Accommodation Preferences -->
-                    <tabView:SfTabItem x:Name="TabAccommodation" Header="3. Accommodation" IsVisible="False">
-                        <tabView:SfTabItem.Content>
-                            <ScrollView>
-                                <VerticalStackLayout>
-                                    <Label Text="Hotel Selection"/>
-                                    <Picker x:Name="HotelPicker" Title="Choose partner hotel">
-                                        <Picker.Items>
-                                            <x:String>Hotel Aurora</x:String>
-                                            <x:String>Cityscape Suites</x:String>
-                                            <x:String>Grand Meridian</x:String>
-                                            <x:String>Harbor View</x:String>
-                                        </Picker.Items>
-                                    </Picker>
-                                    <Label x:Name="HotelError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                    <Label Text="Room Type"/>
-                                    <Picker x:Name="RoomTypePicker" Title="Select room type">
-                                        <Picker.Items>
-                                            <x:String>Single</x:String>
-                                            <x:String>Double</x:String>
-                                            <x:String>Suite</x:String>
-                                        </Picker.Items>
-                                    </Picker>
-                                    <Label x:Name="RoomTypeError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                    <Label Text="Check-in and Check-out Dates"/>
-                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                                        <VerticalStackLayout>
-                                            <Label Text="Check-in"/>
-                                            <DatePicker x:Name="CheckInPicker" />
-                                        </VerticalStackLayout>
-                                        <VerticalStackLayout Grid.Column="1">
-                                            <Label Text="Check-out"/>
-                                            <DatePicker x:Name="CheckOutPicker" />
-                                        </VerticalStackLayout>
-                                    </Grid>
-
-                                    <Label Text="Special Requests"/>
-                                    <Entry x:Name="SpecialReqEntry" Placeholder="Late check-in, extra bed, etc."/>
-
-                                    <Label Text="Transportation Options"/>
-                                    <VerticalStackLayout Spacing="8">
-                                        <HorizontalStackLayout Spacing="8">
-                                            <CheckBox x:Name="CbAirportPickup"/>
-                                            <Label Text="Airport pickup" VerticalOptions="Center"/>
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="8">
-                                            <CheckBox x:Name="CbShuttle"/>
-                                            <Label Text="Shuttle service" VerticalOptions="Center"/>
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
-
-                                    <HorizontalStackLayout Spacing="12" Margin="0,8,0,0">
-                                        <Button Text="Back" Clicked="OnBackToEventClicked" />
-                                        <Button Text="Next"
-                                            BackgroundColor="{StaticResource PrimaryColor}"
-                                            TextColor="White"
-                                            Clicked="OnAccommodationNextClicked"/>
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
-                            </ScrollView>
-                        </tabView:SfTabItem.Content>
-                    </tabView:SfTabItem>
-
-                    <!-- TAB 4: Payment Details -->
-                    <tabView:SfTabItem x:Name="TabPayment" Header="4. Payment" IsVisible="False">
-                        <tabView:SfTabItem.Content>
-                            <ScrollView>
-                                <!-- Wrap payment form and success view in a single parent -->
-                                <VerticalStackLayout>
-
-                                    <!-- Payment Form -->
-                                    <VerticalStackLayout x:Name="PaymentFormStack" Spacing="10">
-                                        <Label Text="Payment Method"/>
-                                        <Picker x:Name="PaymentMethodPicker" Title="Select method" SelectedIndexChanged="OnPaymentMethodChanged">
-                                            <Picker.Items>
-                                                <x:String>Credit Card</x:String>
-                                                <x:String>Debit Card</x:String>
-                                                <x:String>UPI</x:String>
-                                                <x:String>PayPal</x:String>
-                                            </Picker.Items>
-                                        </Picker>
-                                        <Label x:Name="PaymentMethodError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                        <!-- Card Details container (no overlap) -->
-                                        <VerticalStackLayout x:Name="CardDetailsStack" IsVisible="False" Spacing="6">
-                                            <Label Text="Card Number"/>
-                                            <Entry x:Name="CardNumberEntry" Placeholder="XXXX XXXX XXXX XXXX" Keyboard="Numeric"/>
-                                            <Label x:Name="CardNumberError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                                                <VerticalStackLayout>
-                                                    <Label Text="Expiry (MM/YY)"/>
-                                                    <Entry x:Name="ExpiryEntry" Placeholder="MM/YY" Keyboard="Text"/>
-                                                    <Label x:Name="ExpiryError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-                                                </VerticalStackLayout>
-                                                <VerticalStackLayout Grid.Column="1">
-                                                    <Label Text="CVV"/>
-                                                    <Entry x:Name="CvvEntry" Placeholder="123" Keyboard="Numeric" IsPassword="True"/>
-                                                    <Label x:Name="CvvError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-                                                </VerticalStackLayout>
-                                            </Grid>
-                                        </VerticalStackLayout>
-
-                                        <Label Text="Billing Address"/>
-                                        <Entry x:Name="BillingAddressEntry" Placeholder="Street, City, ZIP"/>
-                                        <Label x:Name="BillingError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
-
-                                        <Label Text="Promo Code / Discount Coupon"/>
-                                        <Entry x:Name="PromoEntry" Placeholder="Enter code (optional)"/>
-
-                                        <!-- Estimated amount -->
-                                        <Border Padding="10" BackgroundColor="{StaticResource SurfaceAlt}" Margin="0,12,0,0">
-                                            <Border.StrokeShape>
-                                                <RoundRectangle CornerRadius="10" />
-                                            </Border.StrokeShape>
-                                            <HorizontalStackLayout>
-                                                <Label Text="Estimated Total: " FontAttributes="Bold"/>
-                                                <Label x:Name="EstimatedAmountLabel" Text="$0.00" />
-                                            </HorizontalStackLayout>
-                                        </Border>
-
-                                        <HorizontalStackLayout Spacing="12" Margin="0,8,0,0">
-                                            <Button Text="Back" Clicked="OnBackToAccommodationClicked" />
-                                            <Button Text="Submit Registration"
-                                                BackgroundColor="{StaticResource PrimaryColor}"
-                                                TextColor="White"
-                                                Clicked="OnPaymentSubmitClicked"/>
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
-
-                                    <!-- Success Panel -->
-                                    <VerticalStackLayout x:Name="SuccessStack" IsVisible="False" Spacing="10" Margin="0,16,0,0">
-                                        <Border Padding="12" BackgroundColor="{StaticResource SurfaceAlt}">
-                                            <Border.StrokeShape>
-                                                <RoundRectangle CornerRadius="10"/>
-                                            </Border.StrokeShape>
-                                            <VerticalStackLayout>
-                                                <Label Text="Registration submitted successfully!" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" FontSize="18"/>
-                                                <Label Text="You can start a new registration if needed." TextColor="{StaticResource TextMuted}" FontSize="13"/>
-                                            </VerticalStackLayout>
-                                        </Border>
-                                        <Button Text="Start New Registration" WidthRequest="250"
-                                            BackgroundColor="{StaticResource AccentColor}"
-                                            TextColor="White"
-                                            Clicked="OnStartNewRegistrationClicked"/>
-                                    </VerticalStackLayout>
-
-                                </VerticalStackLayout>
-                            </ScrollView>
-                        </tabView:SfTabItem.Content>
-                    </tabView:SfTabItem>
-
-                </tabView:SfTabView>
+    </tabView:SfTabView>
+</Grid>
 ```
 
 ### Output
 
-![Tab View](MauiApp12025-11-2616-45-51-ezgif.com-video-to-gif-converter.gif)
+![Tab View](FormSample2025-12-0109-50-46-ezgif.com-video-to-gif-converter.gif)
 
 ## Requirements to run the demo
 

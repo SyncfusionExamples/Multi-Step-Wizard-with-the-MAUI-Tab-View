@@ -5,6 +5,54 @@
              x:Class="MultiStepForm.App">
     <Application.Resources>
         <ResourceDictionary>
+
+            <!-- Theme -->
+            <Color x:Key="PrimaryColor">#4F46E5</Color>
+            <Color x:Key="AccentColor">#22C55E</Color>
+            <Color x:Key="Surface">#FFFFFF</Color>
+            <Color x:Key="SurfaceAlt">#F9FAFB</Color>
+            <Color x:Key="TextMuted">#6B7280</Color>
+            <Color x:Key="BorderColor">#E5E7EB</Color>
+            <Color x:Key="ErrorColor">#DC2626</Color>
+
+            <!-- Styles -->
+            <!-- These TargetType styles are implicit and will apply globally -->
+            <Style TargetType="Entry">
+                <Setter Property="Margin" Value="0,6,0,0" />
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="Margin" Value="0,6,0,0" />
+            </Style>
+
+            <Style TargetType="DatePicker">
+                <Setter Property="Margin" Value="0,6,0,0" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="0,12,0,0" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#111827" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="0,16,0,0" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="44" />
+            </Style>
+
+            <!-- Keyed style: use with StaticResource -->
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="Margin" Value="0,2,0,0" />
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource ErrorColor}" />
+            </Style>
+
+            <Style TargetType="CheckBox">
+                <Setter Property="Margin" Value="0,6,0,0" />
+            </Style>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
