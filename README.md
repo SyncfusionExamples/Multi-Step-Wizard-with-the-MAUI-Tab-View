@@ -5,59 +5,41 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
 ## Sample
 
 ```xaml
-     <Grid RowDefinitions="Auto,*" RowSpacing="12">
-    <!-- Header -->
-    <VerticalStackLayout Spacing="4">
-        <Label Text="Event Registration Wizard"
-               FontSize="22"
-               TextColor="{StaticResource PrimaryColor}"
-               FontAttributes="Bold"/>
-    </VerticalStackLayout>
+<tabView:SfTabView x:Name="TabView" Grid.Row="1" EnableSwiping="False" BackgroundColor="Transparent"
+                   TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
 
-    <!-- Tabs -->
-    <tabView:SfTabView x:Name="TabView" Grid.Row="1" EnableSwiping="False" BackgroundColor="Transparent"
-                       TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
-        <tabView:SfTabView.TabBarBackground>
-            <LinearGradientBrush EndPoint="0,1">
-                <GradientStop Color="LightBlue" Offset="0.1" />
-                <GradientStop Color="CornflowerBlue" Offset="1.0" />
-        </LinearGradientBrush>
-    </tabView:SfTabView.TabBarBackground>
+    <!-- TAB 1: Personal Info -->
+    <tabView:SfTabItem x:Name="TabPersonal" Header="1. Personal Info" IsVisible="True"
+                       FontAttributes="Bold" FontSize="18">
+        <tabView:SfTabItem.Content>
+            <local:PersonalInfoView x:Name="PersonalView" />
+        </tabView:SfTabItem.Content>
+    </tabView:SfTabItem>
 
-        <!-- TAB 1: Personal Info -->
-        <tabView:SfTabItem x:Name="TabPersonal" Header="1. Personal Info" IsVisible="True"
-                           FontAttributes="Bold" FontSize="18">
-            <tabView:SfTabItem.Content>
-                <local:PersonalInfoView x:Name="PersonalView" />
-            </tabView:SfTabItem.Content>
-        </tabView:SfTabItem>
+    <!-- TAB 2: Event Selection -->
+    <tabView:SfTabItem x:Name="TabEvent" Header="2. Event Selection" IsVisible="False"
+                       FontAttributes="Bold" FontSize="18">
+        <tabView:SfTabItem.Content>
+            <local:EventSelectionView x:Name="EventView" />
+        </tabView:SfTabItem.Content>
+    </tabView:SfTabItem>
 
-        <!-- TAB 2: Event Selection -->
-        <tabView:SfTabItem x:Name="TabEvent" Header="2. Event Selection" IsVisible="False"
-                           FontAttributes="Bold" FontSize="18">
-            <tabView:SfTabItem.Content>
-                <local:EventSelectionView x:Name="EventView" />
-            </tabView:SfTabItem.Content>
-        </tabView:SfTabItem>
+    <!-- TAB 3: Accommodation Preferences -->
+    <tabView:SfTabItem x:Name="TabAccommodation" Header="3. Accommodation" IsVisible="False"
+                       FontAttributes="Bold" FontSize="18">
+        <tabView:SfTabItem.Content>
+            <local:AccommodationView x:Name="Accommodation" />
+        </tabView:SfTabItem.Content>
+    </tabView:SfTabItem>
 
-        <!-- TAB 3: Accommodation Preferences -->
-        <tabView:SfTabItem x:Name="TabAccommodation" Header="3. Accommodation" IsVisible="False"
-                           FontAttributes="Bold" FontSize="18">
-            <tabView:SfTabItem.Content>
-                <local:AccommodationView x:Name="Accommodation" />
-            </tabView:SfTabItem.Content>
-        </tabView:SfTabItem>
-
-        <!-- TAB 4: Payment Details -->
-        <tabView:SfTabItem x:Name="TabPayment" Header="4. Payment" IsVisible="False"
-                           FontAttributes="Bold" FontSize="18">
-            <tabView:SfTabItem.Content>
-                <local:PaymentView x:Name="Payment" />
-            </tabView:SfTabItem.Content>
-        </tabView:SfTabItem>
-
-    </tabView:SfTabView>
-</Grid>
+    <!-- TAB 4: Payment Details -->
+    <tabView:SfTabItem x:Name="TabPayment" Header="4. Payment" IsVisible="False"
+                       FontAttributes="Bold" FontSize="18">
+        <tabView:SfTabItem.Content>
+            <local:PaymentView x:Name="Payment" />
+        </tabView:SfTabItem.Content>
+    </tabView:SfTabItem>
+</tabView:SfTabView>
 ```
 
 ### Output

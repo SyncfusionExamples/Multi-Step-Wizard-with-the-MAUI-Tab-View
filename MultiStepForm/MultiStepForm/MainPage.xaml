@@ -6,27 +6,20 @@
              x:Class="MultiStepForm.MainPage">
 
     <Grid Padding="16" BackgroundColor="#F3F4F6">
-        <Border
-        Stroke="{StaticResource BorderColor}"
-        Background="{StaticResource Surface}"
-        StrokeThickness="1"
-        Padding="16">
+        <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1"
+                Background="{StaticResource Surface}" Padding="16">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="16"/>
             </Border.StrokeShape>
-
             <Grid RowDefinitions="Auto,*" RowSpacing="12">
                 <!-- Header -->
                 <VerticalStackLayout Spacing="4">
-                    <Label Text="Event Registration Wizard"
-                       FontSize="22"
-                       TextColor="{StaticResource PrimaryColor}"
-                       FontAttributes="Bold"/>
+                    <Label Text="Event Registration Wizard" FontSize="22"
+                           TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold"/>
                 </VerticalStackLayout>
 
-                <!-- Tabs -->
                 <tabView:SfTabView x:Name="TabView" Grid.Row="1" EnableSwiping="False" BackgroundColor="Transparent"
-                               TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
+                                   TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
                     <tabView:SfTabView.TabBarBackground>
                         <LinearGradientBrush EndPoint="0,1">
                             <GradientStop Color="LightBlue" Offset="0.1" />
@@ -36,7 +29,7 @@
 
                     <!-- TAB 1: Personal Info -->
                     <tabView:SfTabItem x:Name="TabPersonal" Header="1. Personal Info" IsVisible="True"
-                                   FontAttributes="Bold" FontSize="18">
+                                       FontAttributes="Bold" FontSize="18">
                         <tabView:SfTabItem.Content>
                             <local:PersonalInfoView x:Name="PersonalView" />
                         </tabView:SfTabItem.Content>
@@ -44,7 +37,7 @@
 
                     <!-- TAB 2: Event Selection -->
                     <tabView:SfTabItem x:Name="TabEvent" Header="2. Event Selection" IsVisible="False"
-                                   FontAttributes="Bold" FontSize="18">
+                                       FontAttributes="Bold" FontSize="18">
                         <tabView:SfTabItem.Content>
                             <local:EventSelectionView x:Name="EventView" />
                         </tabView:SfTabItem.Content>
@@ -52,7 +45,7 @@
 
                     <!-- TAB 3: Accommodation Preferences -->
                     <tabView:SfTabItem x:Name="TabAccommodation" Header="3. Accommodation" IsVisible="False"
-                                   FontAttributes="Bold" FontSize="18">
+                                       FontAttributes="Bold" FontSize="18">
                         <tabView:SfTabItem.Content>
                             <local:AccommodationView x:Name="Accommodation" />
                         </tabView:SfTabItem.Content>
@@ -60,12 +53,11 @@
 
                     <!-- TAB 4: Payment Details -->
                     <tabView:SfTabItem x:Name="TabPayment" Header="4. Payment" IsVisible="False"
-                                   FontAttributes="Bold" FontSize="18">
+                                       FontAttributes="Bold" FontSize="18">
                         <tabView:SfTabItem.Content>
                             <local:PaymentView x:Name="Payment" />
                         </tabView:SfTabItem.Content>
                     </tabView:SfTabItem>
-
                 </tabView:SfTabView>
             </Grid>
         </Border>
