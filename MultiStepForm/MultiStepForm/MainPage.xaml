@@ -18,7 +18,7 @@
                            TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold"/>
                 </VerticalStackLayout>
 
-                <tabView:SfTabView x:Name="TabView" Grid.Row="1" EnableSwiping="False" BackgroundColor="Transparent"
+                <tabView:SfTabView x:Name="TabView" Grid.Row="1" 
                                    TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
                     <tabView:SfTabView.TabBarBackground>
                         <LinearGradientBrush EndPoint="0,1">
