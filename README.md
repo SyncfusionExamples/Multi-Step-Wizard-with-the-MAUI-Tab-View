@@ -8,8 +8,8 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
 <tabView:SfTabView x:Name="TabView" Grid.Row="1" TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
 
     <!-- TAB 1: Personal Info -->
-    <tabView:SfTabItem x:Name="TabPersonal" Header="Personal Info" IsVisible="True"
-                       FontAttributes="Bold" FontSize="18" ImagePosition="Left">
+    <tabView:SfTabItem x:Name="TabPersonal" Header="Personal Info" FontAttributes="Bold" 
+                       FontSize="18" ImagePosition="Left">
         <tabView:SfTabItem.ImageSource>
             <FontImageSource Glyph="&#xe760;" Color="#47444D" FontFamily="MauiSampleFontIcon"/>
         </tabView:SfTabItem.ImageSource>

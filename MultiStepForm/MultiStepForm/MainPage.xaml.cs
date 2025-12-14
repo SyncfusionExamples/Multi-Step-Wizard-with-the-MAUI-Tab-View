@@ -8,7 +8,7 @@ namespace MultiStepForm
         public MainPage()
         {
             InitializeComponent();
-            // Hand off all wiring/logic to a separate class
+            // Move all wiring and logic into a separate class
             _wizard = new RegistrationWizard(this);
         }
     }
