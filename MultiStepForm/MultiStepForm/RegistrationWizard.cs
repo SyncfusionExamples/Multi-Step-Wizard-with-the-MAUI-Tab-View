@@ -126,17 +126,17 @@ namespace MultiStepForm
         {
             // Event view controls
             var attendeeStepper = _eventView.FindByName<Stepper>("AttendeeStepper"); // Number of attendees control
-            var cbWorkshops = _eventView.FindByName<CheckBox>("CbWorkshops");        // Workshops option
-            var cbDinner = _eventView.FindByName<CheckBox>("CbDinner");              // Dinner option
-            var cbVip = _eventView.FindByName<CheckBox>("CbVip");                    // VIP option
+            var cbWorkshops = _eventView.FindByName<CheckBox>("workshops");        // Workshops option
+            var cbDinner = _eventView.FindByName<CheckBox>("networkingDinner");              // Dinner option
+            var cbVip = _eventView.FindByName<CheckBox>("vipAccess");                    // VIP option
 
             // Accommodation controls (SfComboBox)
             var hotelPicker = _accommodationView.FindByName<SfComboBox>("HotelPicker");       // Hotel selection
             var roomTypePicker = _accommodationView.FindByName<SfComboBox>("RoomTypePicker"); // Room type selection
             var checkInPicker = _accommodationView.FindByName<DatePicker>("CheckInPicker");   // Check-in date
             var checkOutPicker = _accommodationView.FindByName<DatePicker>("CheckOutPicker"); // Check-out date
-            var cbAirportPickup = _accommodationView.FindByName<CheckBox>("CbAirportPickup"); // Airport pickup option
-            var cbShuttle = _accommodationView.FindByName<CheckBox>("CbShuttle");             // Shuttle option
+            var cbAirportPickup = _accommodationView.FindByName<CheckBox>("airportPickup"); // Airport pickup option
+            var cbShuttle = _accommodationView.FindByName<CheckBox>("shuttle");             // Shuttle option
 
             // Payment controls (SfComboBox)
             var paymentMethodPicker = _paymentView.FindByName<SfComboBox>("PaymentMethodPicker"); // Payment method

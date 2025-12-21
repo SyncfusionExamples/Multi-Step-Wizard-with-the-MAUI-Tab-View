@@ -5,13 +5,15 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
 ## Sample
 
 ```xaml
-<tabView:SfTabView x:Name="TabView" Grid.Row="1" TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
+<tabView:SfTabView x:Name="TabView" IndicatorStrokeThickness="0"
+                   TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
 
     <!-- TAB 1: Personal Info -->
     <tabView:SfTabItem x:Name="TabPersonal" Header="Personal Info" FontAttributes="Bold" 
                        FontSize="18" ImagePosition="Left">
         <tabView:SfTabItem.ImageSource>
-            <FontImageSource Glyph="&#xe760;" Color="#47444D" FontFamily="MauiSampleFontIcon"/>
+            <FontImageSource Glyph="&#xe760;" Color="{Binding Source={x:Reference TabPersonal},Path=TextColor}"
+                             FontFamily="MauiSampleFontIcon"/>
         </tabView:SfTabItem.ImageSource>
         <tabView:SfTabItem.Content>
             <local:PersonalInfoView x:Name="PersonalView" />
@@ -22,7 +24,8 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
     <tabView:SfTabItem x:Name="TabEvent" Header="Event Selection" IsVisible="False"
                        FontAttributes="Bold" FontSize="18" ImagePosition="Left">
         <tabView:SfTabItem.ImageSource>
-            <FontImageSource Glyph="&#xe756;" Color="#47444D" FontFamily="MauiSampleFontIcon"/>
+            <FontImageSource Glyph="&#xe756;" Color="{Binding Source={x:Reference TabEvent},Path=TextColor}"
+                             FontFamily="MauiSampleFontIcon"/>
         </tabView:SfTabItem.ImageSource>
         <tabView:SfTabItem.Content>
             <local:EventSelectionView x:Name="EventView" />
@@ -33,7 +36,8 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
     <tabView:SfTabItem x:Name="TabAccommodation" Header="Accommodation" IsVisible="False"
                        FontAttributes="Bold" FontSize="18" ImagePosition="Left" ImageSize="30">
         <tabView:SfTabItem.ImageSource>
-            <FontImageSource Glyph="&#xe7a4;" Color="#47444D" FontFamily="MauiSampleFontIcon"/>
+            <FontImageSource Glyph="&#xe7a4;" Color="{Binding Source={x:Reference TabAccommodation},Path=TextColor}"
+                             FontFamily="MauiSampleFontIcon"/>
         </tabView:SfTabItem.ImageSource>
         <tabView:SfTabItem.Content>
             <local:AccommodationView x:Name="Accommodation" />
@@ -44,7 +48,8 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
     <tabView:SfTabItem x:Name="TabPayment" Header="Payment" IsVisible="False"
                        FontAttributes="Bold" FontSize="18" ImagePosition="Left">
         <tabView:SfTabItem.ImageSource>
-            <FontImageSource Glyph="&#xe786;" Color="#47444D" FontFamily="MauiSampleFontIcon"/>
+            <FontImageSource Glyph="&#xe786;" Color="{Binding Source={x:Reference TabPayment},Path=TextColor}"
+                             FontFamily="MauiSampleFontIcon"/>
         </tabView:SfTabItem.ImageSource>
         <tabView:SfTabItem.Content>
             <local:PaymentView x:Name="Payment" />
@@ -55,7 +60,7 @@ This sample demonstrates how to create a multi-step wizard using the .NET MAUI T
 
 ### Output
 
-![Tab View](<Multi-step Form.gif>)
+![Tab View](Form.gif)
 
 ## Requirements to run the demo
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="MultiStepForm.PersonalInfoView">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- Name field -->
+            <inputLayout:SfTextInputLayout x:Name="NameField" Hint="Name"
+                                           Style="{StaticResource TextStyle}"
+                                           ErrorText="Enter your name">
+                <Entry x:Name="FullNameEntry"/>
+            </inputLayout:SfTextInputLayout>
+
+            <!-- Email field -->
+            <inputLayout:SfTextInputLayout x:Name="EmailField" Hint="Email Address"
+                                           Style="{StaticResource TextStyle}"
+                                           ErrorText="Enter a valid email address">
+                <Entry x:Name="EmailEntry" Keyboard="Email"/>
+            </inputLayout:SfTextInputLayout>
+
+            <!-- Phone number field -->
+            <inputLayout:SfTextInputLayout x:Name="PhoneNumberField" Hint="Mobile Number"
+                                           Style="{StaticResource TextStyle}"
+                                           ErrorText="Enter a valid mobile number">
+                <Entry x:Name="MobileEntry" Keyboard="Telephone" MaxLength="12"/>
+            </inputLayout:SfTextInputLayout>
+
+            <!-- Organization field -->
+            <inputLayout:SfTextInputLayout x:Name="OrganizationField" 
+                                           Hint="Organization / Company Name"
+                                           Style="{StaticResource TextStyle}"
+                                           ErrorText="Enter your organization/company name">
+                <Entry x:Name="OrgEntry" />
+            </inputLayout:SfTextInputLayout>
+
+            <!-- Job title field -->
+            <inputLayout:SfTextInputLayout x:Name="JobTitleField" Hint="Job Title"
+                                           Style="{StaticResource TextStyle}"
+                                           ErrorText="Enter your job title">
+                <Entry x:Name="JobTitleEntry"/>
+            </inputLayout:SfTextInputLayout>
+
+            <HorizontalStackLayout Spacing="12">
+                <Button x:Name="BtnPersonalNext" Text="Next" TextColor="White"
+                        BackgroundColor="{StaticResource PrimaryColor}"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentView>

@@ -5,6 +5,27 @@
              xmlns:local="clr-namespace:MultiStepForm"
              x:Class="MultiStepForm.MainPage">
 
+    <ContentPage.Resources>
+        <Style TargetType="tabView:SfTabItem">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Normal" >
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#4F4F4F" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#35268b" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
     <Grid Padding="16" BackgroundColor="#F3F4F6">
         <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1"
                 Background="{StaticResource Surface}" Padding="16">
@@ -18,7 +39,7 @@
                            TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold"/>
                 </VerticalStackLayout>
 
-                <tabView:SfTabView x:Name="TabView" Grid.Row="1" 
+                <tabView:SfTabView x:Name="TabView" Grid.Row="1" IndicatorStrokeThickness="0"
                                    TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
                     <tabView:SfTabView.TabBarBackground>
                         <LinearGradientBrush EndPoint="0,1">
@@ -31,7 +52,7 @@
                     <tabView:SfTabItem x:Name="TabPersonal" Header="Personal Info" FontAttributes="Bold" 
                                        FontSize="18" ImagePosition="Left">
                         <tabView:SfTabItem.ImageSource>
-                            <FontImageSource Glyph="&#xe760;" Color="#47444D"
+                            <FontImageSource Glyph="&#xe760;" Color="{Binding Source={x:Reference TabPersonal},Path=TextColor}"
                                              FontFamily="MauiSampleFontIcon"/>
                         </tabView:SfTabItem.ImageSource>
                         <tabView:SfTabItem.Content>
@@ -43,7 +64,7 @@
                     <tabView:SfTabItem x:Name="TabEvent" Header="Event Selection" IsVisible="False"
                                        FontAttributes="Bold" FontSize="18" ImagePosition="Left">
                         <tabView:SfTabItem.ImageSource>
-                            <FontImageSource Glyph="&#xe756;" Color="#47444D"
+                            <FontImageSource Glyph="&#xe756;" Color="{Binding Source={x:Reference TabEvent},Path=TextColor}"
                                              FontFamily="MauiSampleFontIcon"/>
                         </tabView:SfTabItem.ImageSource>
                         <tabView:SfTabItem.Content>
@@ -55,7 +76,7 @@
                     <tabView:SfTabItem x:Name="TabAccommodation" Header="Accommodation" IsVisible="False"
                                        FontAttributes="Bold" FontSize="18" ImagePosition="Left" ImageSize="30">
                         <tabView:SfTabItem.ImageSource>
-                            <FontImageSource Glyph="&#xe7a4;" Color="#47444D"
+                            <FontImageSource Glyph="&#xe7a4;" Color="{Binding Source={x:Reference TabAccommodation},Path=TextColor}"
                                              FontFamily="MauiSampleFontIcon"/>
                         </tabView:SfTabItem.ImageSource>
                         <tabView:SfTabItem.Content>
@@ -67,7 +88,7 @@
                     <tabView:SfTabItem x:Name="TabPayment" Header="Payment" IsVisible="False"
                                        FontAttributes="Bold" FontSize="18" ImagePosition="Left">
                         <tabView:SfTabItem.ImageSource>
-                            <FontImageSource Glyph="&#xe786;" Color="#47444D"
+                            <FontImageSource Glyph="&#xe786;" Color="{Binding Source={x:Reference TabPayment},Path=TextColor}"
                                              FontFamily="MauiSampleFontIcon"/>
                         </tabView:SfTabItem.ImageSource>
                         <tabView:SfTabItem.Content>
