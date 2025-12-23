@@ -2,32 +2,32 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
-             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
-             xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              x:Class="MultiStepForm.EventSelectionView">
 
     <ScrollView>
         <VerticalStackLayout>
             <!-- Event name -->
-            <inputLayout:SfTextInputLayout x:Name="Event" Hint="Event / Conference Name"
+            <core:SfTextInputLayout x:Name="eventName" Hint="Event / Conference Name"
                                            Style="{StaticResource TextStyle}"
                                            ErrorText="Enter your event / conference Name">
-                <Entry x:Name="EventNameEntry"/>
-            </inputLayout:SfTextInputLayout>
+                <Entry x:Name="eventNameEntry"/>
+            </core:SfTextInputLayout>
             
             <!-- Session options -->
-            <Label Text="Session Selection" Padding="10"/>
+            <Label Text="Session Selection" Padding="0,0,0,10"/>
             <StackLayout>
                 <buttons:SfCheckBox x:Name="keynotes" Text="Keynotes"/>
                 <buttons:SfCheckBox x:Name="workshops" Text="Workshops"/>
                 <buttons:SfCheckBox x:Name="breakouts" Text="Breakout Sessions"/>
             </StackLayout>
-            <Label x:Name="SessionError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+            <Label x:Name="sessionError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
 
             <!-- Track selection -->
             <Label Text="Track Preferences" Padding="10"/>
-            <combobox:SfComboBox x:Name="TrackPicker" Placeholder="Select a track" />
-            <Label x:Name="TrackError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+            <inputs:SfComboBox x:Name="trackPicker" Placeholder="Select a track" />
+            <Label x:Name="trackError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
 
             <!-- Add-on options -->
             <Label Text="Add-ons" Padding="10"/>
@@ -38,15 +38,15 @@
 
             <!-- Attendee count -->
             <Label Text="Number of Attendees" Padding="10"/>
-            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" Padding="10">
-                <Stepper x:Name="AttendeeStepper" Minimum="1" Maximum="20" Increment="1" Value="1" />
-                <Label Grid.Column="1" VerticalOptions="Center"
-                       Text="{Binding Source={x:Reference AttendeeStepper}, Path=Value}" />
-            </Grid>
+            <inputs:SfNumericEntry Value="1" x:Name="numericEntry"
+                        WidthRequest="100"  MaximumNumberDecimalDigits="0"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        UpDownPlacementMode="InlineVertical"/>
             
             <HorizontalStackLayout Spacing="12" Margin="0,8,0,0">                
-                <Button x:Name="BtnBackToPersonal" Text="Back" />
-                <Button x:Name="BtnEventNext" Text="Next" TextColor="White"
+                <Button x:Name="btnBackToPersonal" Text="Back" />
+                <Button x:Name="btnEventNext" Text="Next" TextColor="White"
                         BackgroundColor="{StaticResource PrimaryColor}"/>
             </HorizontalStackLayout>
 

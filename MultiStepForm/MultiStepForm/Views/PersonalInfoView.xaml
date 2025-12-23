@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              x:Class="MultiStepForm.PersonalInfoView">
 
     <ScrollView>
         <VerticalStackLayout>
             <!-- Name field -->
-            <inputLayout:SfTextInputLayout x:Name="NameField" Hint="Name"
+            <core:SfTextInputLayout x:Name="nameField" Hint="Name"
                                            Style="{StaticResource TextStyle}"
                                            ErrorText="Enter your name">
-                <Entry x:Name="FullNameEntry"/>
-            </inputLayout:SfTextInputLayout>
+                <Entry x:Name="fullNameEntry"/>
+            </core:SfTextInputLayout>
 
             <!-- Email field -->
-            <inputLayout:SfTextInputLayout x:Name="EmailField" Hint="Email Address"
+            <core:SfTextInputLayout x:Name="emailField" Hint="Email Address"
                                            Style="{StaticResource TextStyle}"
                                            ErrorText="Enter a valid email address">
-                <Entry x:Name="EmailEntry" Keyboard="Email"/>
-            </inputLayout:SfTextInputLayout>
+                <Entry x:Name="emailEntry" Keyboard="Email"/>
+            </core:SfTextInputLayout>
 
             <!-- Phone number field -->
-            <inputLayout:SfTextInputLayout x:Name="PhoneNumberField" Hint="Mobile Number"
+            <core:SfTextInputLayout x:Name="phoneNumberField" Hint="Mobile Number"
                                            Style="{StaticResource TextStyle}"
                                            ErrorText="Enter a valid mobile number">
-                <Entry x:Name="MobileEntry" Keyboard="Telephone" MaxLength="12"/>
-            </inputLayout:SfTextInputLayout>
+                <Entry x:Name="mobileEntry" Keyboard="Telephone" MaxLength="12"/>
+            </core:SfTextInputLayout>
 
             <!-- Organization field -->
-            <inputLayout:SfTextInputLayout x:Name="OrganizationField" 
+            <core:SfTextInputLayout x:Name="organizationField" 
                                            Hint="Organization / Company Name"
                                            Style="{StaticResource TextStyle}"
                                            ErrorText="Enter your organization/company name">
-                <Entry x:Name="OrgEntry" />
-            </inputLayout:SfTextInputLayout>
+                <Entry x:Name="orgEntry" />
+            </core:SfTextInputLayout>
 
             <!-- Job title field -->
-            <inputLayout:SfTextInputLayout x:Name="JobTitleField" Hint="Job Title"
+            <core:SfTextInputLayout x:Name="jobTitleField" Hint="Designation"
                                            Style="{StaticResource TextStyle}"
-                                           ErrorText="Enter your job title">
-                <Entry x:Name="JobTitleEntry"/>
-            </inputLayout:SfTextInputLayout>
+                                           ErrorText="Enter your designation">
+                <Entry x:Name="jobTitleEntry"/>
+            </core:SfTextInputLayout>
 
             <HorizontalStackLayout Spacing="12">
-                <Button x:Name="BtnPersonalNext" Text="Next" TextColor="White"
+                <Button x:Name="btnPersonalNext" Text="Next" TextColor="White"
                         BackgroundColor="{StaticResource PrimaryColor}"/>
             </HorizontalStackLayout>
 

@@ -39,7 +39,7 @@ namespace MultiStepForm
         };
 
         // Room multiplier
-        readonly Dictionary<string, double> RoomMultiplier = new() // Room type cost multipliers
+        readonly Dictionary<string, double> RoomMultiplier = new() 
         {
             ["Single"] = 1.0,
             ["Double"] = 1.4,
@@ -51,16 +51,16 @@ namespace MultiStepForm
             _page = page; // Store the page reference
 
             //Find each tab
-            _tabView = _page.FindByName<SfTabView>("TabView")!;                  // Find the TabView by name
-            _tabPersonal = _page.FindByName<SfTabItem>("TabPersonal")!;         
-            _tabEvent = _page.FindByName<SfTabItem>("TabEvent")!;               
-            _tabAccommodation = _page.FindByName<SfTabItem>("TabAccommodation")!; 
-            _tabPayment = _page.FindByName<SfTabItem>("TabPayment")!;          
+            _tabView = _page.FindByName<SfTabView>("tabView")!;                  // Find the TabView by name
+            _tabPersonal = _page.FindByName<SfTabItem>("tabPersonal")!;         
+            _tabEvent = _page.FindByName<SfTabItem>("tabEvent")!;               
+            _tabAccommodation = _page.FindByName<SfTabItem>("tabAccommodation")!; 
+            _tabPayment = _page.FindByName<SfTabItem>("tabPayment")!;          
 
-            _personalView = _page.FindByName<PersonalInfoView>("PersonalView")!;    
-            _eventView = _page.FindByName<EventSelectionView>("EventView")!;        
-            _accommodationView = _page.FindByName<AccommodationView>("Accommodation")!; 
-            _paymentView = _page.FindByName<PaymentView>("Payment")!;               
+            _personalView = _page.FindByName<PersonalInfoView>("personalView")!;    
+            _eventView = _page.FindByName<EventSelectionView>("eventView")!;        
+            _accommodationView = _page.FindByName<AccommodationView>("accommodation")!; 
+            _paymentView = _page.FindByName<PaymentView>("payment")!;               
 
             WireEvents();         // Set up event handlers for navigation and updates
             InitializeDefaults(); // Initialize default values (e.g., dates)
@@ -107,8 +107,8 @@ namespace MultiStepForm
 
         private void InitializeDefaults() // Sets initial values for specific controls
         {
-            var ci = _accommodationView.FindByName<DatePicker>("CheckInPicker");   // Get the Check-In date picker
-            var co = _accommodationView.FindByName<DatePicker>("CheckOutPicker");  // Get the Check-Out date picker
+            var ci = _accommodationView.FindByName<DatePicker>("checkInPicker");   // Get the Check-In date picker
+            var co = _accommodationView.FindByName<DatePicker>("checkOutPicker");  // Get the Check-Out date picker
             if (ci != null) ci.Date = DateTime.Today;   
             if (co != null) co.Date = DateTime.Today;  
         }
@@ -125,36 +125,36 @@ namespace MultiStepForm
         private void UpdateEstimatedAmount()
         {
             // Event view controls
-            var attendeeStepper = _eventView.FindByName<Stepper>("AttendeeStepper"); // Number of attendees control
+            var numericentry = _eventView.FindByName<Stepper>("numericEntry"); // Number of attendees control
             var cbWorkshops = _eventView.FindByName<CheckBox>("workshops");        // Workshops option
             var cbDinner = _eventView.FindByName<CheckBox>("networkingDinner");              // Dinner option
             var cbVip = _eventView.FindByName<CheckBox>("vipAccess");                    // VIP option
 
             // Accommodation controls (SfComboBox)
-            var hotelPicker = _accommodationView.FindByName<SfComboBox>("HotelPicker");       // Hotel selection
-            var roomTypePicker = _accommodationView.FindByName<SfComboBox>("RoomTypePicker"); // Room type selection
-            var checkInPicker = _accommodationView.FindByName<DatePicker>("CheckInPicker");   // Check-in date
-            var checkOutPicker = _accommodationView.FindByName<DatePicker>("CheckOutPicker"); // Check-out date
+            var hotelpicker = _accommodationView.FindByName<SfComboBox>("hotelPicker");       // Hotel selection
+            var roomtypePicker = _accommodationView.FindByName<SfComboBox>("roomTypePicker"); // Room type selection
+            var checkinPicker = _accommodationView.FindByName<DatePicker>("checkInPicker");   // Check-in date
+            var checkoutPicker = _accommodationView.FindByName<DatePicker>("checkOutPicker"); // Check-out date
             var cbAirportPickup = _accommodationView.FindByName<CheckBox>("airportPickup"); // Airport pickup option
             var cbShuttle = _accommodationView.FindByName<CheckBox>("shuttle");             // Shuttle option
 
             // Payment controls (SfComboBox)
-            var paymentMethodPicker = _paymentView.FindByName<SfComboBox>("PaymentMethodPicker"); // Payment method
+            var paymentMethodPicker = _paymentView.FindByName<SfComboBox>("paymentMethodPicker"); // Payment method
 
-            int attendees = (int)Math.Round(attendeeStepper?.Value ?? 1); // Attendee count 
+            int attendees = (int)Math.Round(numericentry?.Value ?? 1); // Attendee count 
             double total = attendees * BaseTicket;                        // Start with base ticket cost
 
             if (cbWorkshops?.IsChecked == true) total += attendees * WorkshopAddon; // Add workshop fees if selected
             if (cbDinner?.IsChecked == true) total += attendees * DinnerAddon;      // Add dinner fees if selected
             if (cbVip?.IsChecked == true) total += attendees * VipAddon;            // Add VIP fees if selected
 
-            DateTime? checkIn = checkInPicker?.Date;   
-            DateTime? checkOut = checkOutPicker?.Date; 
+            DateTime? checkIn = checkinPicker?.Date;   
+            DateTime? checkOut = checkoutPicker?.Date; 
             int nights = Math.Max(0, (int)((checkOut - checkIn)?.TotalDays ?? 0)); 
 
             // If hotel and room selections are valid and nights > 0, add accommodation cost
-            if (hotelPicker?.SelectedItem is string hotel && HotelRate.TryGetValue(hotel, out var rate)
-                && roomTypePicker?.SelectedItem is string room && RoomMultiplier.TryGetValue(room, out var mult)
+            if (hotelpicker?.SelectedItem is string hotel && HotelRate.TryGetValue(hotel, out var rate)
+                && roomtypePicker?.SelectedItem is string room && RoomMultiplier.TryGetValue(room, out var mult)
                 && nights > 0)
             {
                 total += rate * mult * nights; // Calculate room cost

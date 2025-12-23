@@ -11,11 +11,11 @@ namespace MultiStepForm                             // Declares the namespace fo
         {
             InitializeComponent();                  
 
-            TrackPicker.ItemsSource = PickerData.Tracks; // Binds picker items to available tracks 
+            trackPicker.ItemsSource = PickerData.Tracks; // Binds picker items to available tracks 
 
-            BtnBackToPersonal.Clicked += (_, __) => BackRequested?.Invoke(this, EventArgs.Empty);    // On Back button click, raise BackRequested 
+            btnBackToPersonal.Clicked += (_, __) => BackRequested?.Invoke(this, EventArgs.Empty);    // On Back button click, raise BackRequested 
 
-            BtnEventNext.Clicked += OnEventNextClicked; // Wire Next button to validation handler
+            btnEventNext.Clicked += OnEventNextClicked; // Wire Next button to validation handler
 
             // When any session checkbox changes, update session selection state 
             keynotes.StateChanged += (_, __) => OnSessionSelectionUpdated();
@@ -51,17 +51,17 @@ namespace MultiStepForm                             // Declares the namespace fo
         {
             if (AnySessionSelected())                              // If one is selected, clear session error
             {
-                SetError(SessionError, null);
+                SetError(sessionError, null);
             }
         }
 
         private void OnEventNextClicked(object? sender, EventArgs e) // Handler for Next button click
         {
-            FieldNullCheck(Event);                                 // Validate event name 
+            FieldNullCheck(eventName);                                 // Validate event name 
             bool anySession = AnySessionSelected();                 // Check if any session selected
-            SetError(SessionError, anySession ? null : "Select at least one session.");   // Show session error only if none selected
-            SetError(TrackError, TrackPicker.SelectedItem is null ? "Please select a track." : null);   // Show track error if no track is selected
-            bool hasAnyError = Event.HasError || SessionError.IsVisible || TrackError.IsVisible;    // Aggregate validation state from input layout and error labels
+            SetError(sessionError, anySession ? null : "Select at least one session.");   // Show session error only if none selected
+            SetError(trackError, trackPicker.SelectedItem is null ? "Please select a track." : null);   // Show track error if no track is selected
+            bool hasAnyError = eventName.HasError || sessionError.IsVisible || trackError.IsVisible;    // Aggregate validation state from input layout and error labels
             if (hasAnyError) return;                                // Stop if any validation failed
             NextRequested?.Invoke(this, EventArgs.Empty);           // Otherwise, notify parent to go to next step
         }
@@ -69,11 +69,11 @@ namespace MultiStepForm                             // Declares the namespace fo
         // Reset the view to its initial state
         public void Reset()
         {
-            EventNameEntry.Text = string.Empty;                   
+            eventNameEntry.Text = string.Empty;                   
             keynotes.IsChecked = workshops.IsChecked = breakouts.IsChecked = false;
-            TrackPicker.SelectedItem = null;                        
+            trackPicker.SelectedItem = null;                        
             networkingDinner.IsChecked = vipAccess.IsChecked = false;
-            AttendeeStepper.Value = 1;                              
+            numericEntry.Value = 1;                              
         }
     }
 }

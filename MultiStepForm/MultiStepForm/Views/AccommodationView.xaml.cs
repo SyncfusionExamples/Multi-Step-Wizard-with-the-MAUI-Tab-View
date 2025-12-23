@@ -9,12 +9,12 @@ namespace MultiStepForm
         {
             InitializeComponent();                
 
-            HotelPicker.ItemsSource = PickerData.Hotels;       // Set hotel combo's data source list
-            RoomTypePicker.ItemsSource = PickerData.RoomTypes; // Set room type combo's data source list
+            hotelPicker.ItemsSource = PickerData.Hotels;       // Set hotel combo's data source list
+            roomTypePicker.ItemsSource = PickerData.RoomTypes; // Set room type combo's data source list
 
-            BtnBackToEvent.Clicked += (_, __) => BackRequested?.Invoke(this, EventArgs.Empty);   // On Back button click, raise BackRequested 
+            btnBackToEvent.Clicked += (_, __) => BackRequested?.Invoke(this, EventArgs.Empty);   // On Back button click, raise BackRequested 
 
-            BtnAccommodationNext.Clicked += OnAccommodationNextClicked;   // Wire Next button click to validation handler
+            btnAccommodationNext.Clicked += OnAccommodationNextClicked;   // Wire Next button click to validation handler
         }
 
         void SetError(Label label, string? message) // Show or hide an error label 
@@ -31,11 +31,11 @@ namespace MultiStepForm
 
         internal async void OnAccommodationNextClicked(object? sender, EventArgs e) // Next button click handler
         {
-            SetError(HotelError, HotelPicker.SelectedItem is null ? "Choose a hotel." : null);   // If no hotel selected, show error; otherwise, clear it
+            SetError(hotelError, hotelPicker.SelectedItem is null ? "Choose a hotel." : null);   // If no hotel selected, show error; otherwise, clear it
 
-            SetError(RoomTypeError, RoomTypePicker.SelectedItem is null ? "Choose a room type." : null);   // If no room type selected, show error; otherwise, clear it
+            SetError(roomTypeError, roomTypePicker.SelectedItem is null ? "Choose a room type." : null);   // If no room type selected, show error; otherwise, clear it
 
-            if (HotelError.IsVisible || RoomTypeError.IsVisible)
+            if (hotelError.IsVisible || roomTypeError.IsVisible)
                 return; // If any required field is invalid, do not proceed
 
             NextRequested?.Invoke(this, EventArgs.Empty); // Notify parent to move to next step
@@ -43,11 +43,11 @@ namespace MultiStepForm
 
         public void Reset() // Reset the view to its initial state
         {
-            HotelPicker.SelectedItem = null;           
-            RoomTypePicker.SelectedItem = null;        
-            CheckInPicker.Date = DateTime.Today;       
-            CheckOutPicker.Date = DateTime.Today;      
-            SpecialReqEntry.Text = string.Empty;       
+            hotelPicker.SelectedItem = null;           
+            roomTypePicker.SelectedItem = null;        
+            checkInPicker.Date = DateTime.Today;       
+            checkOutPicker.Date = DateTime.Today;      
+            specialReqEntry.Text = string.Empty;       
             airportPickup.IsChecked = shuttle.IsChecked = false; 
         }
     }

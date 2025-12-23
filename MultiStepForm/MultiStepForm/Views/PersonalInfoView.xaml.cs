@@ -17,11 +17,11 @@ namespace MultiStepForm
         {
             InitializeComponent();                        
 
-            BtnPersonalNext.Clicked += OnPersonalNextClicked;  // Subscribes to the Next button click event
+            btnPersonalNext.Clicked += OnPersonalNextClicked;  // Subscribes to the Next button click event
 
             _allFields = new[]                            // Initializes the array with all SfTextInputLayout fields
             {
-                NameField, EmailField, PhoneNumberField, OrganizationField, JobTitleField
+                nameField, emailField, phoneNumberField, organizationField, jobTitleField
             };
         }
 
@@ -46,19 +46,19 @@ namespace MultiStepForm
 
         private void ValidatePhoneNumber()               // Validates the phone number format
         {
-            var text = GetTextTrimmed(PhoneNumberField); // Read and trim the phone input
+            var text = GetTextTrimmed(phoneNumberField); // Read and trim the phone input
             if (!string.IsNullOrEmpty(text))             // Only validate when user entered something
             {
-                PhoneNumberField.HasError = !PhoneRegex.IsMatch(text); // Error if it doesn't match the regex
+                phoneNumberField.HasError = !PhoneRegex.IsMatch(text); // Error if it doesn't match the regex
             }
         }
 
         private void ValidateEmailAddress()              // Validates the email format
         {
-            var text = GetTextTrimmed(EmailField);       // Read and trim the email input
+            var text = GetTextTrimmed(emailField);       // Read and trim the email input
             if (!string.IsNullOrEmpty(text))             // Only validate when user entered something
             {
-                EmailField.HasError = !EmailRegex.IsMatch(text); // Error if regex doesn't match
+                emailField.HasError = !EmailRegex.IsMatch(text); // Error if regex doesn't match
             }
         }
 
@@ -74,8 +74,8 @@ namespace MultiStepForm
 
         public void Reset()                               // Resets all inputs to empty
         {
-            FullNameEntry.Text = EmailEntry.Text = MobileEntry.Text = OrgEntry.Text =
-            JobTitleEntry.Text = string.Empty;            // Sets all texts to empty string
+            fullNameEntry.Text = emailEntry.Text = mobileEntry.Text = orgEntry.Text =
+            jobTitleEntry.Text = string.Empty;            // Sets all texts to empty string
         }
     }
 }
