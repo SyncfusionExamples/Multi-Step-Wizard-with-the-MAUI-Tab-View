@@ -31,7 +31,7 @@
             <core:SfTextInputLayout x:Name="organizationField" 
                                            Hint="Organization / Company Name"
                                            Style="{StaticResource TextStyle}"
-                                           ErrorText="Enter your organization/company name">
+                                           ErrorText="Enter your organization / company name">
                 <Entry x:Name="orgEntry" />
             </core:SfTextInputLayout>
 

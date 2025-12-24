@@ -31,9 +31,9 @@ namespace MultiStepForm
 
         internal async void OnAccommodationNextClicked(object? sender, EventArgs e) // Next button click handler
         {
-            SetError(hotelError, hotelPicker.SelectedItem is null ? "Choose a hotel." : null);   // If no hotel selected, show error; otherwise, clear it
+            SetError(hotelError, hotelPicker.SelectedItem is null ? "Choose a hotel" : null);   // If no hotel selected, show error; otherwise, clear it
 
-            SetError(roomTypeError, roomTypePicker.SelectedItem is null ? "Choose a room type." : null);   // If no room type selected, show error; otherwise, clear it
+            SetError(roomTypeError, roomTypePicker.SelectedItem is null ? "Choose a room type" : null);   // If no room type selected, show error; otherwise, clear it
 
             if (hotelError.IsVisible || roomTypeError.IsVisible)
                 return; // If any required field is invalid, do not proceed

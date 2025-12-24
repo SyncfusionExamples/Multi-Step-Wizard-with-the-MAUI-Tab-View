@@ -11,7 +11,7 @@
             <!-- Event name -->
             <core:SfTextInputLayout x:Name="eventName" Hint="Event / Conference Name"
                                            Style="{StaticResource TextStyle}"
-                                           ErrorText="Enter your event / conference Name">
+                                           ErrorText="Enter your event / conference name">
                 <Entry x:Name="eventNameEntry"/>
             </core:SfTextInputLayout>
             
@@ -25,24 +25,24 @@
             <Label x:Name="sessionError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
 
             <!-- Track selection -->
-            <Label Text="Track Preferences" Padding="10"/>
+            <Label Text="Track Preferences" Padding="0,0,0,10"/>
             <inputs:SfComboBox x:Name="trackPicker" Placeholder="Select a track" />
             <Label x:Name="trackError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
 
             <!-- Add-on options -->
-            <Label Text="Add-ons" Padding="10"/>
+            <Label Text="Add-ons" Padding="0,0,0,10"/>
             <StackLayout>
                 <buttons:SfCheckBox x:Name="networkingDinner" Text="Networking Dinner"/>
                 <buttons:SfCheckBox x:Name="vipAccess" Text="VIP Access"/>
             </StackLayout>
 
             <!-- Attendee count -->
-            <Label Text="Number of Attendees" Padding="10"/>
+            <Label Text="Number of Attendees" Padding="0,0,0,10"/>
             <inputs:SfNumericEntry Value="1" x:Name="numericEntry"
-                        WidthRequest="100"  MaximumNumberDecimalDigits="0"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Start"
-                        UpDownPlacementMode="InlineVertical"/>
+                    WidthRequest="80"  MaximumNumberDecimalDigits="0"
+                    VerticalOptions="Center" HorizontalOptions="Start"
+                    UpDownPlacementMode="Inline" UpDownOrder="DownThenUp"
+                    UpDownButtonAlignment="Both"/>
             
             <HorizontalStackLayout Spacing="12" Margin="0,8,0,0">                
                 <Button x:Name="btnBackToPersonal" Text="Back" />

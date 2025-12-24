@@ -41,12 +41,14 @@
 
                 <tabView:SfTabView x:Name="tabView" Grid.Row="1" IndicatorStrokeThickness="0"
                                    TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
+
                     <tabView:SfTabView.TabBarBackground>
                         <LinearGradientBrush EndPoint="0,1">
-                            <GradientStop Color="LightBlue" Offset="0.1" />
-                            <GradientStop Color="CornflowerBlue" Offset="1.0" />
+                            <GradientStop Color="#E0F7FA" Offset="0.1" />
+                            <GradientStop Color="#90CAF9" Offset="1.0" />
                         </LinearGradientBrush>
                     </tabView:SfTabView.TabBarBackground>
+
 
                     <!-- TAB 1: Personal Info -->
                     <tabView:SfTabItem x:Name="tabPersonal" Header="Personal Info" FontAttributes="Bold" 

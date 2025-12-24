@@ -59,8 +59,8 @@ namespace MultiStepForm                             // Declares the namespace fo
         {
             FieldNullCheck(eventName);                                 // Validate event name 
             bool anySession = AnySessionSelected();                 // Check if any session selected
-            SetError(sessionError, anySession ? null : "Select at least one session.");   // Show session error only if none selected
-            SetError(trackError, trackPicker.SelectedItem is null ? "Please select a track." : null);   // Show track error if no track is selected
+            SetError(sessionError, anySession ? null : "Select atleast one session");   // Show session error only if none selected
+            SetError(trackError, trackPicker.SelectedItem is null ? "Please select a track" : null);   // Show track error if no track is selected
             bool hasAnyError = eventName.HasError || sessionError.IsVisible || trackError.IsVisible;    // Aggregate validation state from input layout and error labels
             if (hasAnyError) return;                                // Stop if any validation failed
             NextRequested?.Invoke(this, EventArgs.Empty);           // Otherwise, notify parent to go to next step
