@@ -1,4 +1,5 @@
-﻿using Syncfusion.Maui.Inputs;           
+﻿using Syncfusion.Maui.Buttons;
+using Syncfusion.Maui.Inputs;           
 using Syncfusion.Maui.TabView;          
 
 namespace MultiStepForm                
@@ -125,18 +126,18 @@ namespace MultiStepForm
         private void UpdateEstimatedAmount()
         {
             // Event view controls
-            var numericentry = _eventView.FindByName<Stepper>("numericEntry"); // Number of attendees control
-            var cbWorkshops = _eventView.FindByName<CheckBox>("workshops");        // Workshops option
-            var cbDinner = _eventView.FindByName<CheckBox>("networkingDinner");              // Dinner option
-            var cbVip = _eventView.FindByName<CheckBox>("vipAccess");                    // VIP option
+            var numericentry = _eventView.FindByName<SfNumericEntry>("numericEntry"); // Number of attendees control
+            var cbWorkshops = _eventView.FindByName<SfCheckBox>("workshops");        // Workshops option
+            var cbDinner = _eventView.FindByName<SfCheckBox>("networkingDinner");              // Dinner option
+            var cbVip = _eventView.FindByName<SfCheckBox>("vipAccess");                    // VIP option
 
             // Accommodation controls (SfComboBox)
             var hotelpicker = _accommodationView.FindByName<SfComboBox>("hotelPicker");       // Hotel selection
             var roomtypePicker = _accommodationView.FindByName<SfComboBox>("roomTypePicker"); // Room type selection
             var checkinPicker = _accommodationView.FindByName<DatePicker>("checkInPicker");   // Check-in date
             var checkoutPicker = _accommodationView.FindByName<DatePicker>("checkOutPicker"); // Check-out date
-            var cbAirportPickup = _accommodationView.FindByName<CheckBox>("airportPickup"); // Airport pickup option
-            var cbShuttle = _accommodationView.FindByName<CheckBox>("shuttle");             // Shuttle option
+            var cbAirportPickup = _accommodationView.FindByName<SfCheckBox>("airportPickup"); // Airport pickup option
+            var cbShuttle = _accommodationView.FindByName<SfCheckBox>("shuttle");             // Shuttle option
 
             // Payment controls (SfComboBox)
             var paymentMethodPicker = _paymentView.FindByName<SfComboBox>("paymentMethodPicker"); // Payment method
