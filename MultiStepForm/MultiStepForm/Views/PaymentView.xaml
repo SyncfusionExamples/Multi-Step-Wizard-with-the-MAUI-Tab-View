@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="MultiStepForm.PaymentView">
+
+    <ScrollView>
+        <StackLayout>
+            <VerticalStackLayout x:Name="paymentFormStack">
+                <Label Text="Payment Method" Padding="0,0,0,12"/>
+                <!-- Drop-down to pick payment method (e.g., Card, PayPal) -->
+                <inputs:SfComboBox x:Name="paymentMethodPicker" Placeholder="Select method" />
+                <Label x:Name="paymentMethodError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+                
+                <!-- Card Details -->
+                <VerticalStackLayout x:Name="cardDetailsStack" IsVisible="False">
+                    <core:SfTextInputLayout x:Name="cardNumberField"
+                                                   Hint="Card Number" 
+                                                   ErrorText="Enter a valid card number"
+                                                   Style="{StaticResource TextStyle}">
+                        <Entry x:Name="cardNumberEntry" Placeholder="XXXX XXXX XXXX XXXX"
+                               Keyboard="Numeric" MaxLength="23"/>
+                    </core:SfTextInputLayout>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <!-- Expiry -->
+                        <core:SfTextInputLayout x:Name="expiryField" Hint="Expiry (MM/YY)"
+                                                       Style="{StaticResource TextStyle}"
+                                                       ErrorText="Expiry format: MM/YY">
+                            <Entry x:Name="expiryEntry" Placeholder="MM/YY" Keyboard="Text" MaxLength="5"/>
+                        </core:SfTextInputLayout>
+
+                        <!-- CVV -->
+                        <core:SfTextInputLayout x:Name="cvvField" Grid.Column="1" Hint="CVV"
+                                                       Style="{StaticResource TextStyle}"
+                                                       ErrorText="CVV must be 3 or 4 digits">
+                            <Entry x:Name="cvvEntry" Placeholder="123" Keyboard="Numeric" 
+                                   IsPassword="True" MaxLength="4"/>
+                        </core:SfTextInputLayout>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- Billing address -->
+                <core:SfTextInputLayout x:Name="billingField"
+                                               Hint="Billing Address" 
+                                               Style="{StaticResource TextStyle}"
+                                               ErrorText="Billing address is required">
+                    <Entry x:Name="billingAddressEntry" Placeholder="Street, City, ZIP"/>
+                </core:SfTextInputLayout>
+
+                <!-- Promo code (optional) -->
+                <core:SfTextInputLayout x:Name="promoField"
+                                               Style="{StaticResource TextStyle}"
+                                               Hint="Promo Code / Discount Coupon">
+                    <Entry x:Name="promoEntry" Placeholder="Enter code (optional)"/>
+                </core:SfTextInputLayout>
+
+                <!-- Estimated total -->
+                <Border Padding="10,20,0,20" BackgroundColor="{StaticResource SurfaceAlt}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Padding="0,-15,0,0">
+                        <Label Text="Estimated Total: " FontAttributes="Bold"/>
+                        <Label x:Name="estimatedAmountLabel" Text="$0.00" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <HorizontalStackLayout Spacing="12">
+                    <Button x:Name="btnBackToAccommodation" Text="Back" />
+                    <Button x:Name="btnPaymentSubmit" Text="Submit Registration"
+                            TextColor="White" BackgroundColor="{StaticResource PrimaryColor}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- Success Panel -->
+            <VerticalStackLayout x:Name="successStack" IsVisible="False" Spacing="10" Margin="0,16,0,0">
+                <Border Padding="12" BackgroundColor="{StaticResource SurfaceAlt}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
+                        <Label Text="Registration submitted successfully!"
+                               TextColor="{StaticResource AccentColor}"
+                               FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="You can start a new registration if needed."
+                               TextColor="{StaticResource TextMuted}" FontSize="13"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button x:Name="btnStartNewRegistration" Text="Start New Registration"
+                        TextColor="White" WidthRequest="250"
+                        BackgroundColor="{StaticResource AccentColor}"/>
+            </VerticalStackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentView>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:local="clr-namespace:MultiStepForm"
+             x:Class="MultiStepForm.MainPage">
+
+    <ContentPage.Resources>
+        <Style TargetType="tabView:SfTabItem">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Normal" >
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#4F4F4F" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#35268b" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid Padding="16" BackgroundColor="#F3F4F6">
+        <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1"
+                Background="{StaticResource Surface}" Padding="16">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="16"/>
+            </Border.StrokeShape>
+            <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                <!-- Header -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Event Registration Wizard" FontSize="22"
+                           TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+
+                <tabView:SfTabView x:Name="tabView" Grid.Row="1" IndicatorStrokeThickness="0"
+                                   TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}">
+
+                    <tabView:SfTabView.TabBarBackground>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#E0F7FA" Offset="0.1" />
+                            <GradientStop Color="#90CAF9" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </tabView:SfTabView.TabBarBackground>
+
+
+                    <!-- TAB 1: Personal Info -->
+                    <tabView:SfTabItem x:Name="tabPersonal" Header="Personal Info" FontAttributes="Bold" 
+                                       FontSize="18" ImagePosition="Left">
+                        <tabView:SfTabItem.ImageSource>
+                            <FontImageSource Glyph="&#xe760;" Color="{Binding Source={x:Reference tabPersonal},Path=TextColor}"
+                                             FontFamily="MauiSampleFontIcon"/>
+                        </tabView:SfTabItem.ImageSource>
+                        <tabView:SfTabItem.Content>
+                            <local:PersonalInfoView x:Name="personalView" />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <!-- TAB 2: Event Selection -->
+                    <tabView:SfTabItem x:Name="tabEvent" Header="Event Selection" IsVisible="False"
+                                       FontAttributes="Bold" FontSize="18" ImagePosition="Left">
+                        <tabView:SfTabItem.ImageSource>
+                            <FontImageSource Glyph="&#xe756;" Color="{Binding Source={x:Reference tabEvent},Path=TextColor}"
+                                             FontFamily="MauiSampleFontIcon"/>
+                        </tabView:SfTabItem.ImageSource>
+                        <tabView:SfTabItem.Content>
+                            <local:EventSelectionView x:Name="eventView" />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <!-- TAB 3: Accommodation Preferences -->
+                    <tabView:SfTabItem x:Name="tabAccommodation" Header="Accommodation" IsVisible="False"
+                                       FontAttributes="Bold" FontSize="18" ImagePosition="Left" ImageSize="30">
+                        <tabView:SfTabItem.ImageSource>
+                            <FontImageSource Glyph="&#xe7a4;" Color="{Binding Source={x:Reference tabAccommodation},Path=TextColor}"
+                                             FontFamily="MauiSampleFontIcon"/>
+                        </tabView:SfTabItem.ImageSource>
+                        <tabView:SfTabItem.Content>
+                            <local:AccommodationView x:Name="accommodation" />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <!-- TAB 4: Payment Details -->
+                    <tabView:SfTabItem x:Name="tabPayment" Header="Payment" IsVisible="False"
+                                       FontAttributes="Bold" FontSize="18" ImagePosition="Left">
+                        <tabView:SfTabItem.ImageSource>
+                            <FontImageSource Glyph="&#xe786;" Color="{Binding Source={x:Reference tabPayment},Path=TextColor}"
+                                             FontFamily="MauiSampleFontIcon"/>
+                        </tabView:SfTabItem.ImageSource>
+                        <tabView:SfTabItem.Content>
+                            <local:PaymentView x:Name="payment" />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                </tabView:SfTabView>
+            </Grid>
+        </Border>
+    </Grid>
+
+</ContentPage>

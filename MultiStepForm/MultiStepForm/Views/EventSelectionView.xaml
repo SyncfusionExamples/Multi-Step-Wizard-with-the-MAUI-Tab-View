@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             x:Class="MultiStepForm.EventSelectionView">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- Event name -->
+            <core:SfTextInputLayout x:Name="eventName" Hint="Event / Conference Name"
+                                           Style="{StaticResource TextStyle}"
+                                           ErrorText="Enter your event / conference name">
+                <Entry x:Name="eventNameEntry"/>
+            </core:SfTextInputLayout>
+            
+            <!-- Session options -->
+            <Label Text="Session Selection" Padding="0,0,0,10"/>
+            <StackLayout>
+                <buttons:SfCheckBox x:Name="keynotes" Text="Keynotes"/>
+                <buttons:SfCheckBox x:Name="workshops" Text="Workshops"/>
+                <buttons:SfCheckBox x:Name="breakouts" Text="Breakout Sessions"/>
+            </StackLayout>
+            <Label x:Name="sessionError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+
+            <!-- Track selection -->
+            <Label Text="Track Preferences" Padding="0,0,0,10"/>
+            <inputs:SfComboBox x:Name="trackPicker" Placeholder="Select a track" />
+            <Label x:Name="trackError" Style="{StaticResource ErrorLabelStyle}" IsVisible="False"/>
+
+            <!-- Add-on options -->
+            <Label Text="Add-ons" Padding="0,0,0,10"/>
+            <StackLayout>
+                <buttons:SfCheckBox x:Name="networkingDinner" Text="Networking Dinner"/>
+                <buttons:SfCheckBox x:Name="vipAccess" Text="VIP Access"/>
+            </StackLayout>
+
+            <!-- Attendee count -->
+            <Label Text="Number of Attendees" Padding="0,0,0,10"/>
+            <inputs:SfNumericEntry Value="1" x:Name="numericEntry"
+                    WidthRequest="80"  MaximumNumberDecimalDigits="0"
+                    VerticalOptions="Center" HorizontalOptions="Start"
+                    UpDownPlacementMode="Inline" UpDownOrder="DownThenUp"
+                    UpDownButtonAlignment="Both"/>
+            
+            <HorizontalStackLayout Spacing="12" Margin="0,8,0,0">                
+                <Button x:Name="btnBackToPersonal" Text="Back" />
+                <Button x:Name="btnEventNext" Text="Next" TextColor="White"
+                        BackgroundColor="{StaticResource PrimaryColor}"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentView>
